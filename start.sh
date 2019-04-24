@@ -7,8 +7,6 @@
 #
 set -x 
 
-# zsh
-
 sudo apt-get install python-dev python-pip python3-dev python3-pip
 sudo apt-get install python-dev python-pip python3-dev
 sudo apt-get install python3-setuptools
@@ -31,24 +29,18 @@ cp `readlink -f $0`/.zshrc ~/.zshrc
 source ~/.zshrc
 
 #zsh 256color
-cd $ZSH_CUSTOM/plugins && git clone https://github.com/chrissicool/zsh-256color
+git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-256color
+# zsh auto-suggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-echo "source `pwd`/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> $HOME/.zshrc
+echo "plugins=(zsh-autosuggestions zsh-syntax-highlighting)" >> ~/.zshrc
 
 # autojump
 git clone git://github.com/wting/autojump.git && cd autojump && ./install.py && cd ..
 echo "[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh" >> ~/.zshrc
 source ~/.zshrc
-
-# zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
-
-# zsh auto-suggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions 
-${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
