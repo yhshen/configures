@@ -25,7 +25,7 @@ genpac --pac-proxy "SOCKS5 127.0.0.1:25554" >~/.gfwlist.pac
 #zsh oh-my-zsh
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-cp `readlink -f $0`/.zshrc ~/.zshrc
+cp `dirname $(readlink -f $0)`/.zshrc ~/.zshrc
 source ~/.zshrc
 
 #zsh 256color
